@@ -1,4 +1,6 @@
+import java.util.List;
 import java.util.ArrayList;
+
 
 public class BT<E extends Comparable<E>> {
     private Node<E> root;
@@ -45,7 +47,54 @@ public class BT<E extends Comparable<E>> {
         return (root.left == null && root.right == null);
     }
 
-    
+    public String preOrder() {
+        List<String> sb = new ArrayList<String>();
+        preOrder(root, sb);
+        return sb.toString();
+    }
+
+    public void preOrder(Node<E> node, List<String> sb) {
+        if (node == null) {
+            return;
+        }
+        sb.add(node.data+"");
+        preOrder(node.left, sb);
+        preOrder(node.right, sb);
+    }
+
+    public List<String> inOrder() {
+        List<String> sb = new ArrayList<String>();
+        inOrder(root, sb);
+        return sb;
+    }
+    public void inOrder(Node<E> node, List<String> sb) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.left, sb);
+        sb.add(node.data + "");
+        inOrder(node.right, sb);
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        toString(root, 1, sb);
+        return sb.toString();
+    }
+
+    public void toString(Node<E> node, int depth, StringBuilder sb) {
+        for (int i=1; i<depth; i++) {
+            sb.append(" ");
+        }
+        if (node == null) {
+            sb.append("null\n");
+        } else {
+            sb.append(node.toString());
+            sb.append("\n");
+            toString(node.left, depth+1, sb);
+            toString(node.right, depth+1, sb);
+        }
+    }
 
     public Node<E> getRoot() {
         return this.root;
@@ -73,7 +122,16 @@ public class BT<E extends Comparable<E>> {
         }
     }
 
-    
+    public Node<E> balancedTree(List<E> arr, int left, int right) {
+        if (left > right) {
+            return null;
+        }
+        int mid = (left + right)/2;
+        root.data = arr.get(mid);
+        root.left = balancedTree(arr, left, mid-1);
+        root.right = balancedTree(arr, mid+1, right);
+        return root;
+    }
 
     public class Node<E> {
         private E data;
