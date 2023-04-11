@@ -1,10 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.*;
 
 public class BTTEST {
     public static void main(String[] args)  {
-        //get list of numbers from file
         try {
             File file = new File("treetest.txt");
             Scanner scan = new Scanner(file);
@@ -19,11 +19,11 @@ public class BTTEST {
             for (Integer item: arr) {
                 treetest.add(item);
             }
-            
-            System.out.println(treetest.toString());
-            System.out.println(treetest.inOrder());
-            System.out.println(treetest.preOrder());
+            //System.out.println(treetest.inOrder());
+            List<Integer> inOrd = new ArrayList<Integer>(treetest.inOrder());
             System.out.println(treetest.balancedTree(arr, 0, arr.size()-1));
+            treetest.balancedTree(inOrd, 0, inOrd.size()-1);
+            System.out.println(treetest.preOrder());
 
             scan.close();
         } catch (IOException e) {
