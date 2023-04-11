@@ -67,7 +67,7 @@ public class BT<E extends Comparable<E>> {
         inOrder(root, sb);
         return sb;
     }
-    public void inOrder(Node<E> node, List<E> sb) {
+    public void inOrder(Node<E> node, ArrayList<E> sb) {
         if (node == null) {
             return;
         }
@@ -104,9 +104,14 @@ public class BT<E extends Comparable<E>> {
         this.root = new Node<E>(root);
     }
 
+    public void add(Node<E> item) {
+        root = add(root, item);
+    }
+
     public void add(E item) {
         root = add(root, item);
     }
+
     //recursive add method from textbook
     private Node<E> add(Node<E> localRoot, E item) {
         if (localRoot == null) {
@@ -122,12 +127,31 @@ public class BT<E extends Comparable<E>> {
         }
     }
 
-    public Node<E> balancedTree(List<E> arr, int left, int right) {
+    private Node<E> add(Node<E> localRoot, Node<E> item) {
+        if (localRoot == null) {
+            return item;
+        } else if (item.data.compareTo(localRoot.data) == 0) {
+            return localRoot;
+        } else if (item.data.compareTo(localRoot.data) < 0) {
+            localRoot.left = add(localRoot.left, item);
+            return localRoot;
+        } else {
+            localRoot.right = add(localRoot.right, item);
+            return localRoot;
+        }
+    }
+
+    public void balancedTree(ArrayList<E> arr) {
+        root = balancedTree(arr, 0, arr.size()-1);
+    }
+
+    public Node<E> balancedTree(ArrayList<E> arr, int left, int right) {
         if (left > right) {
             return null;
         }
         int mid = (left + right)/2;
         Node<E> node = new Node<E>(arr.get(mid));
+        add(node);
         node.left = balancedTree(arr, left, mid-1);
         node.right = balancedTree(arr, mid+1, right);
         return node;
