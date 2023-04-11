@@ -6,7 +6,7 @@ import java.io.*;
 public class BTTEST {
     public static void main(String[] args)  {
         try {
-            File file = new File("treetest.txt");
+            File file = new File("bsttest.txt");
             Scanner scan = new Scanner(file);
             ArrayList<Integer> arr = new ArrayList<Integer>();
 
@@ -19,10 +19,9 @@ public class BTTEST {
             for (Integer item: arr) {
                 treetest.add(item);
             }
-            //System.out.println(treetest.inOrder());
-            List<Integer> inOrd = new ArrayList<Integer>(treetest.inOrder());
-            System.out.println(treetest.balancedTree(arr, 0, arr.size()-1));
-            treetest.balancedTree(inOrd, 0, inOrd.size()-1);
+            ArrayList<Integer> inOrd = treetest.inOrder();
+            System.out.println(inOrd);
+            treetest.balancedTree(inOrd);
             System.out.println(treetest.preOrder());
 
             scan.close();
@@ -32,3 +31,4 @@ public class BTTEST {
     }
 
 }
+
