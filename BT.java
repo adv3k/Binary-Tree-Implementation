@@ -47,32 +47,32 @@ public class BT<E extends Comparable<E>> {
         return (root.left == null && root.right == null);
     }
 
-    public String preOrder() {
-        List<String> sb = new ArrayList<String>();
+    public List<E> preOrder() {
+        List<E> sb = new ArrayList<E>();
         preOrder(root, sb);
-        return sb.toString();
+        return sb;
     }
 
-    public void preOrder(Node<E> node, List<String> sb) {
+    public void preOrder(Node<E> node, List<E> sb) {
         if (node == null) {
             return;
         }
-        sb.add(node.data+"");
+        sb.add(node.data);
         preOrder(node.left, sb);
         preOrder(node.right, sb);
     }
 
-    public List<String> inOrder() {
-        List<String> sb = new ArrayList<String>();
+    public ArrayList<E> inOrder() {
+        ArrayList<E> sb = new ArrayList<E>();
         inOrder(root, sb);
         return sb;
     }
-    public void inOrder(Node<E> node, List<String> sb) {
+    public void inOrder(Node<E> node, List<E> sb) {
         if (node == null) {
             return;
         }
         inOrder(node.left, sb);
-        sb.add(node.data + "");
+        sb.add(node.data);
         inOrder(node.right, sb);
     }
 
@@ -127,10 +127,10 @@ public class BT<E extends Comparable<E>> {
             return null;
         }
         int mid = (left + right)/2;
-        root.data = arr.get(mid);
-        root.left = balancedTree(arr, left, mid-1);
-        root.right = balancedTree(arr, mid+1, right);
-        return root;
+        Node<E> node = new Node<E>(arr.get(mid));
+        node.left = balancedTree(arr, left, mid-1);
+        node.right = balancedTree(arr, mid+1, right);
+        return node;
     }
 
     public class Node<E> {
