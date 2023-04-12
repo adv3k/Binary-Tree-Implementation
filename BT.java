@@ -1,6 +1,34 @@
 import java.util.List;
 import java.util.ArrayList;
 
+/*
+ * Purpose:
+ *     To self implement a binary tree, traverse in-order, balance the tree, then traverse pre-order
+ * 
+ * Authors:
+ *     Peyton Cusick
+ *     Bryce LeCates
+ * 
+ * Input:
+ *     File: list of numbers
+ * Output:
+ *     Print the original array, in-order traverse, and pre-order traverse
+ * 
+ * How to Use:
+ *     1) Make a file of numbers seperated by commas
+ *
+ * Expected Data:
+ *     File of numbers seperated by commas
+ * 
+ * Expected Exceptions:
+ *     IOException
+ * 
+ * Major Classes:
+ *     BT: (Binary Tree)
+ *         Methods: 
+ *              -
+ */
+
 public class BT<E extends Comparable<E>> {
     private Node<E> root;
 
